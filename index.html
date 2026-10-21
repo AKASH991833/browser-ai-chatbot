@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Browser AI Chatbot - a chatbot that runs entirely on your device</title>
+<meta name="description" content="A conversational assistant with intent matching, conversation context, small talk, calculations, and a teaching mode - 100% in your browser. No API keys, no servers, works offline.">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./"><span class="brand-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 5h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><circle cx="9" cy="11.5" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="11.5" r="1" fill="currentColor" stroke="none"/><circle cx="17" cy="11.5" r="1" fill="currentColor" stroke="none"/></svg></span><span>Browser AI Chatbot</span></a>
+    <nav class="site-nav">
+      <a class="nav-link" href="#chat">Chat</a>
+      <a class="nav-link" href="#brain">Brain</a>
+      <a class="nav-link" href="#limits">Limits</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-ghost btn-icon" data-theme-toggle aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg></button>
+      <button class="btn btn-ghost btn-icon menu-btn" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero wrap rise">
+    <span class="hero-eyebrow">No server. No API key. No data leaves this page.</span>
+    <h1>A chatbot that lives in your browser</h1>
+    <p class="lede">Intent matching, conversation memory, small talk, math, reminders-in-context and a teaching mode that lets you add new question-answer pairs - all running locally as plain JavaScript.</p>
+  </section>
+
+  <section class="wrap rise rise-1 mt16" id="chat">
+    <div class="card card-pad-lg">
+      <div id="chatLog" class="stack mb16" style="max-height:420px;overflow-y:auto"></div>
+      <div class="row row-wrap mb16" id="suggestions"></div>
+      <form class="row" id="chatForm">
+        <input class="input grow" id="chatInput" placeholder="Ask me something, or teach me: teach when I say X you say Y" autocomplete="off">
+        <button class="btn btn-primary" type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="wrap rise rise-2 mt24" id="brain">
+    <div class="grid grid-2">
+      <div class="card card-pad-lg">
+        <h3 class="mb16">What I know</h3>
+        <p class="small muted">Built-in intents plus anything you teach me. Taught pairs persist in this browser.</p>
+        <div class="stack mt16" id="intentList"></div>
+      </div>
+      <div class="card card-pad-lg">
+        <h3 class="mb16">Teach me</h3>
+        <div class="field"><label class="lbl">When the user says</label><input class="input" id="teachQ" placeholder="e.g. what is the wifi password"></div>
+        <div class="field"><label class="lbl">I reply</label><input class="input" id="teachA" placeholder="e.g. The guest wifi is on the fridge magnet."></div>
+        <div class="row"><button class="btn btn-primary" id="btnTeach">Add to brain</button>
+          <button class="btn btn-ghost btn-sm" id="btnForget">Forget taught pairs</button>
+          <button class="btn btn-ghost btn-sm" id="btnClearChat">Clear chat</button></div>
+        <p class="small muted mt16">You can also teach inline: <code>teach: when I say "hello team" you say "morning crew"</code></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap rise rise-3 mt24 mb24" id="limits">
+    <div class="card card-pad-lg">
+      <h2 class="mb16">Honest limits</h2>
+      <ul class="cross-list">
+        <li>This is a pattern-matching chatbot, not a large language model. It answers what it was taught and handles its built-in intents; it does not reason about new topics.</li>
+        <li>Context memory is shallow - it remembers your name and the last topic within the session.</li>
+        <li>Taught pairs live in localStorage on this device only.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="wrap">Browser AI Chatbot - pattern-matching, on-device, honest about what it is</div></footer>
+<script src="ui.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
